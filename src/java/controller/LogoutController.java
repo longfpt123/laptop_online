@@ -5,7 +5,6 @@
 
 package controller;
 
-import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,13 +13,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.User;
 
 /**
  *
  * @author asus
  */
-public class LoginController extends HttpServlet {
+public class LogoutController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,10 +35,10 @@ public class LoginController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginController</title>");  
+            out.println("<title>Servlet LogoutController</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginController at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet LogoutController at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +55,25 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
+       HttpSession session=request.getSession();
+        session.removeAttribute("acc");
+        session.removeAttribute("account");
+        request.getSession().invalidate();        
+        Cookie loginCookie = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
+                    loginCookie = cookie;
+                    break;
+                }
+            }
+        }
+        if (loginCookie != null) {
+            loginCookie.setMaxAge(0);
+            response.addCookie(loginCookie);
+        }       
+        response.sendRedirect("home");
     } 
 
     /** 
@@ -70,48 +86,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        UserDAO ud = new UserDAO();
-        String u = request.getParameter("username");
-        String p = request.getParameter("password");
-        String r=request.getParameter("rem");
-        User a=ud.login(u, p);
-        User b=ud.getAccBlock(u);
-        if(b==null){
-               if(a==null){
-            request.setAttribute("err", "Wrong username or password!!");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-               }else{
-            
-            HttpSession session=request.getSession();
-            session.setAttribute("account", a);
-            session.setAttribute("acc", a);
-            //save username,password cookie
-            Cookie cuser = new Cookie("user", u);
-            Cookie cpass = new Cookie("pass", p);
-            Cookie cremember = new Cookie("rem", r);
-           if(r!=null){
-                //user click remember me-->set time cookies
-                               //co nho , 1 ngay
-                cuser.setMaxAge(60 * 60 * 24);
-                cpass.setMaxAge(60 * 60 * 24);
-                cremember.setMaxAge(60 * 60 * 24);
-            } else {
-               //khong nho , nen xoa no di
-                cuser.setMaxAge(0);
-                cpass.setMaxAge(0);
-                cremember.setMaxAge(0);
-
-            }
-            response.addCookie(cuser);
-            response.addCookie(cpass);
-            response.addCookie(cremember);
-            response.sendRedirect("home");
-        }
-       
-    }else{
-             request.setAttribute("mess", "YOUR ACCOUNT BLOCKED");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);    
-            }
+        processRequest(request, response);
     }
 
     /** 

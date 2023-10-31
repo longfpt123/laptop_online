@@ -5,22 +5,23 @@
 
 package controller;
 
-import dal.UserDAO;
+import dal.CategoryDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.User;
+import java.util.List;
+import model.Category;
+import model.Product;
 
 /**
  *
  * @author asus
  */
-public class LoginController extends HttpServlet {
+public class CategoryController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,10 +38,10 @@ public class LoginController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginController</title>");  
+            out.println("<title>Servlet CategoryController</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginController at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet CategoryController at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +58,36 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
+       String PTid = request.getParameter("PTidCate");
+        String cateID = request.getParameter("cid");
+        ProductDAO dao = new ProductDAO();
+        int count = dao.countByCid(cateID);
+        int size = 6;
+        int endPage = count / size;
+        if (count % size != 0) {
+            endPage++;
+        }
+        if (PTid == null) {
+            PTid = "1";
+        }
+        request.setAttribute("endPageCate", endPage);
+        request.setAttribute("PTidCate", PTid);
+        List<Product> list2 = dao.getProductByCate(cateID, PTid);
+//        take cid
+       String cID=request.getParameter("id_cat");
+//       load product by cid
+        ProductDAO d= new ProductDAO();
+          CategoryDAO c= new CategoryDAO();
+        List<Product> list=d.getListProByCat(cID);
+         List<Category> list1=c.getAllCat();
+        //product newest
+        Product last=d.getLast();
+        request.setAttribute("listP", list2);
+         request.setAttribute("cateID", cateID);
+        request.setAttribute("listC", list1);
+         request.setAttribute("p", last);
+        request.setAttribute("tag", cateID);
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
     } 
 
     /** 
@@ -70,48 +100,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        UserDAO ud = new UserDAO();
-        String u = request.getParameter("username");
-        String p = request.getParameter("password");
-        String r=request.getParameter("rem");
-        User a=ud.login(u, p);
-        User b=ud.getAccBlock(u);
-        if(b==null){
-               if(a==null){
-            request.setAttribute("err", "Wrong username or password!!");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-               }else{
-            
-            HttpSession session=request.getSession();
-            session.setAttribute("account", a);
-            session.setAttribute("acc", a);
-            //save username,password cookie
-            Cookie cuser = new Cookie("user", u);
-            Cookie cpass = new Cookie("pass", p);
-            Cookie cremember = new Cookie("rem", r);
-           if(r!=null){
-                //user click remember me-->set time cookies
-                               //co nho , 1 ngay
-                cuser.setMaxAge(60 * 60 * 24);
-                cpass.setMaxAge(60 * 60 * 24);
-                cremember.setMaxAge(60 * 60 * 24);
-            } else {
-               //khong nho , nen xoa no di
-                cuser.setMaxAge(0);
-                cpass.setMaxAge(0);
-                cremember.setMaxAge(0);
-
-            }
-            response.addCookie(cuser);
-            response.addCookie(cpass);
-            response.addCookie(cremember);
-            response.sendRedirect("home");
-        }
-       
-    }else{
-             request.setAttribute("mess", "YOUR ACCOUNT BLOCKED");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);    
-            }
+        processRequest(request, response);
     }
 
     /** 
