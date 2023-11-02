@@ -240,4 +240,19 @@ public class UserDAO extends DBContext {
         System.out.println(u.getAllAccBlock());
     }
 
+     public boolean checkEmail(String email) {
+        String sql = "select * from [user] where  email='" + email + "'" ;
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
 }
