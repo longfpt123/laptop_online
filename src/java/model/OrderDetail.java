@@ -5,15 +5,15 @@ package model;
  * @author 
  */
 public class OrderDetail {
-    private int  oid,pid; //order id and product id
+    private int  oid,pid;
     private int quantity;
     private double price;
     private String fname,lname,phone,address;
-
+    private int status;
     public OrderDetail() {
     }
 
-    public OrderDetail(int oid, int pid, int quantity, double price, String fname, String lname, String phone, String address) {
+    public OrderDetail(int oid, int pid, int quantity, double price, String fname, String lname, String phone, String address,int status) {
         this.oid = oid;
         this.pid = pid;
         this.quantity = quantity;
@@ -22,6 +22,7 @@ public class OrderDetail {
         this.lname = lname;
         this.phone = phone;
         this.address = address;
+        this.status = status;
     }
 
     public int getOid() {
@@ -38,6 +39,14 @@ public class OrderDetail {
 
     public void setPid(int pid) {
         this.pid = pid;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getQuantity() {
