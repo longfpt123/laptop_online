@@ -14,11 +14,26 @@ import model.User;
  */
 public class UserDAO extends DBContext {
 
+    public boolean checkEmail(String email) {
+        String sql = "select * from [user] where  email='" + email + "'";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
     public User login(String username, String password) {
         String sql = "select*from [user] where username=? and password=? ";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            
+
             ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
@@ -34,15 +49,16 @@ public class UserDAO extends DBContext {
                         rs.getString(9),
                         rs.getString(10));
             }
-        
+
         } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
 
     }
+
     public boolean checkAcc(String username) {
-        String sql = "select * from [user] where  username='" + username + "'" ;
+        String sql = "select * from [user] where  username='" + username + "'";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -95,7 +111,7 @@ public class UserDAO extends DBContext {
 
         } catch (SQLException e) {
             System.out.println(e);
-        }      
+        }
     }
 
     public User getAcc(String name) {
@@ -115,23 +131,24 @@ public class UserDAO extends DBContext {
                 String phone = rs.getString("phone");
                 String address = rs.getString("address");
                 String role = rs.getString("role");
-                user = new User(id_user, username, password, dob, gender, email, phone, address, role,"0");
+                user = new User(id_user, username, password, dob, gender, email, phone, address, role, "0");
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
         return user;
     }
-    public  List<User> getAllUser() {
+
+    public List<User> getAllUser() {
         User user = new User();
         String sql = "select * from [user] where [block]=0 and role=2 or role=3";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-             List<User> list= new ArrayList<>();
+            List<User> list = new ArrayList<>();
             while (rs.next()) {
-               
+
                 int id_user = rs.getInt("id_user");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
@@ -141,7 +158,7 @@ public class UserDAO extends DBContext {
                 String phone = rs.getString("phone");
                 String address = rs.getString("address");
                 String role = rs.getString("role");
-                user = new User(id_user, username, password, dob, gender, email, phone, address, role,"0");
+                user = new User(id_user, username, password, dob, gender, email, phone, address, role, "0");
                 list.add(user);
             }
             return list;
@@ -149,14 +166,15 @@ public class UserDAO extends DBContext {
             System.out.println(e);
         }
         return null;
-       
+
     }
+
     public void blockAccount(String aid) {
         String query = "UPDATE [user] SET block = 1 WHERE id_user = ?";
 
         try {
-            
-             PreparedStatement ps = connection.prepareStatement(query);
+
+            PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, aid);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -167,9 +185,9 @@ public class UserDAO extends DBContext {
     public void unBlockAccount(String aid) {
         String query = "UPDATE [user] SET block = 0 WHERE id_user = ?";
 
-       try {
-            
-             PreparedStatement ps = connection.prepareStatement(query);
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, aid);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -181,15 +199,15 @@ public class UserDAO extends DBContext {
         String sql = "select * \n"
                 + "from [user]\n"
                 + "where [username] like ? and block = 1";
-            
-       try {
+
+        try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            
+
             ps.setString(1, user);
-           
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                 return new User(rs.getInt(1),
+                return new User(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getDate(4),
@@ -199,24 +217,25 @@ public class UserDAO extends DBContext {
                         rs.getString(8),
                         rs.getString(9),
                         rs.getString(10));
-               
+
             }
-        
+
         } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
     }
-     public List<User> getAllAccBlock() {
+
+    public List<User> getAllAccBlock() {
         List<User> list = new ArrayList<>();
         String query = "select * from [user]\n"
                 + "where block = 1";
         try {
-           
-             PreparedStatement ps = connection.prepareStatement(query);
-             ResultSet rs = ps.executeQuery();
+
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                User u=new User(rs.getInt(1),
+                User u = new User(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getDate(4),
@@ -225,7 +244,7 @@ public class UserDAO extends DBContext {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10)); 
+                        rs.getString(10));
                 list.add(u);
             }
         } catch (SQLException e) {
@@ -233,26 +252,14 @@ public class UserDAO extends DBContext {
         }
         return list;
     }
+
     public static void main(String[] args) {
-        UserDAO u= new UserDAO();
+        UserDAO u = new UserDAO();
 //        System.out.println(u.login("duc", "123"));
 //        System.out.println(u.getAllUser());
         System.out.println(u.getAllAccBlock());
     }
 
-     public boolean checkEmail(String email) {
-        String sql = "select * from [user] where  email='" + email + "'" ;
-
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return false;
-    }
+   
 
 }
