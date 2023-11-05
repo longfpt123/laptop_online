@@ -277,22 +277,22 @@ public class ProductDAO extends DBContext {
 
 
     //add new product
-    public void addPro(
-          int id_pro, int id_cat,String name_pro,String images,int quantity,double price,String supplier,String infor,int sell_id) {
-        String sql = "INSERT [dbo].[product] ([id_pro], [id_cat], [name_pro], [images], [quantity], [price], [supplier], [infor],[sell_ID]) VALUES(?,?,?,?,?,?,?,?,?)";
+     public void addPro(
+          int id_cat,String name_pro,String images,int quantity,double price,String supplier,String infor,int sell_id) {
+        String sql = "INSERT [dbo].[product] ( [id_cat], [name_pro], [images], [quantity], [price], [supplier], [infor],[sell_ID]) VALUES(?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
 
-             ps.setInt(1, id_pro);
-            ps.setInt(2, id_cat);
-            ps.setString(3,name_pro);
-            ps.setString(4, images);
-            ps.setInt(5, quantity);
-            ps.setDouble(6, price);
-            ps.setString(7,supplier);
-            ps.setString(8, infor);
-            ps.setInt(9, sell_id);
+           
+            ps.setInt(1, id_cat);
+            ps.setString(2,name_pro);
+            ps.setString(3, images);
+            ps.setInt(4, quantity);
+            ps.setDouble(5, price);
+            ps.setString(6,supplier);
+            ps.setString(7, infor);
+            ps.setInt(8, sell_id);
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -455,10 +455,10 @@ public class ProductDAO extends DBContext {
 
     public static void main(String[] args) {
         ProductDAO d = new ProductDAO();
-//        List<Product> list = d.pagingProduct(3);
-//        for (Product p : list) {
-//            System.out.println(p);
-//        }
+        List<Product> list = d.getAll();
+        for (Product p : list) {
+            System.out.println(p);
+        }
 
     }
 }

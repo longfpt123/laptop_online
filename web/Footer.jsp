@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!------ Start Footer ------->
-                <div class="row footer">
+<div class="row footer" style="margin-top: 2%">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="footer-parts">
                             <div class="footer-parts-h4">About Us</div>
@@ -54,17 +54,6 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="copyrights">
-                        <div class="col-md-8 col-sm-8 col-xs-12">
-                            <div class="copyrights-left">
-                                &copy; 2018. All rights reserved by <a href="http://www.freetimelearning.com" target="_blank">Free Time Learn</a>.
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <div class="copyrights-right">
-                                Designed by <a href="http://www.freetimelearning.com" target="_blank">F T L</a>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
 

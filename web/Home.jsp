@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Home
-    Created on : Oct 30, 2023, 9:27:11 PM
-    Author     : asus
---%>
+
 
 <%@page import="dal.ProductDAO"%>
 <%@page import="dal.UserDAO"%>
@@ -45,7 +41,7 @@
             .pagination a:hover:not(.active) {
                 background-color: chocolate;
             }
-            
+
         </style>
         <script type="text/javascript">
             (function (i, s, o, g, r, a, m) {
@@ -64,6 +60,7 @@
         </script>
     </head>
     <body>
+       
         <div class="container-fluid">
             <div class="main_shadow">
                 <!-- Start Header -->
@@ -73,7 +70,7 @@
                     <div class="col-md-9 col-sm-9 col-xs-12">
 
                         <div class="row">
-                           
+
                             <div class="col-md-5 col-sm-5 col-xs-12 form-top hidden-xs" align="center">
                                 <form action="search" method="post">
                                     <div class="input-group">
@@ -84,26 +81,21 @@
                                                 <i class="fa fa-search"></i></button>
                                         </span>                                      
                                     </div>
-                                      
-                                 </form>
-<!--                                 <p class="text-danger" role="alert">
-                                       ${mess}
-                                      <p>
-                                   -->
-                               
+
+                                </form>
+                                <!--                                 <p class="text-danger" role="alert">
+                                ${mess}
+                               <p>
+                                -->
+
                             </div>
-                                
+
                             <!--</form>-->
                             <div class="col-md-7 col-sm-7 col-xs-12" align="right">
                                 <div class="row hidden-xs">
                                     <div class="row">
                                         <div class="header-top pull-right">
-                                            <ul>
-                                                <li><a href=""><i class="fa fa-facebook"></i>&nbsp;</a></li>
-                                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                                <li><a href=""><i class="fa fa-google"></i></a></li>
-                                            </ul>
+
                                         </div>
                                     </div>
                                 </div>
@@ -130,13 +122,13 @@
                                         </div>
 
                                     </div>
-                                     <c:set var="size" value="${sessionScope.size}"/>
+                                    <c:set var="size" value="${sessionScope.size}"/>
                                     <div class="col-md-5 col-sm-5 col-xs-12">
                                         <div class="header-right-bottom">
                                             <i class="fa fa-cart-plus cart_size"><a href="Cart.jsp"> 
-                Bag(${size})
-               
-            </a></i> &nbsp; 
+                                                    Bag(${size})
+
+                                                </a></i> &nbsp; 
                                             <!--<i class="fa fa-inr inr_size"></i> <span class="amount">1569 /-</span>-->
                                         </div>
                                     </div>
@@ -162,27 +154,27 @@
                     <div id="navbarCollapse" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li> <a   href="home">Home</a></li>
-                             <li> <a   href="">Product</a></li>    
-                                                        <li class="dropdown">
-                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="">Technical Help &nbsp;
-                                                                <span class="caret"></span></a>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a href="#!"> Barnd Name</a></li>
-                                                                <li><a href="#!"> Barnd Name</a></li>
-                                                                <li><a href="#!"> Barnd Name</a></li>
-                                                                <li><a href="#!"> Barnd Name</a></li>
-                            target="_blank"
-                                                            </ul>
-                                                        </li>
-                                     
+                            <li> <a   href="">Product</a></li>    
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="">Technical Help &nbsp;
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#!"> Barnd Name</a></li>
+                                    <li><a href="#!"> Barnd Name</a></li>
+                                    <li><a href="#!"> Barnd Name</a></li>
+                                    <li><a href="#!"> Barnd Name</a></li>
+                                    target="_blank"
+                                </ul>
+                            </li>
+
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Document.... &nbsp;
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-<!--                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>-->
+                                    <!--                                    <li><a href="#!"> Barnd Name</a></li>
+                                                                        <li><a href="#!"> Barnd Name</a></li>
+                                                                        <li><a href="#!"> Barnd Name</a></li>
+                                                                        <li><a href="#!"> Barnd Name</a></li>-->
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -216,27 +208,23 @@
                                 </ul>
                             </li>
 
-                            
-                                <c:if test="${sessionScope.acc.role==2}">
-                                    <li><a href="InfoUser.jsp">Info</a></li>
+
+                            <c:if test="${sessionScope.acc.role==2}">
+
                                 <li><a href="manager">Manager Product</a></li>
-                                
+                                <li><a href="order">Manager Order</a></li>
                                 </c:if>
-                                
-                                <c:if test="${sessionScope.acc.role==1}">
-                                 
-                                <li><a href="InfoUser.jsp">Info Admin</a></li>
-                                 <li><a href="manager">Manager Product</a></li>
+
+                            <c:if test="${sessionScope.acc.role==1}">
+
+
+                                <li><a href="manager">Manager Product</a></li>
                                 <li><a href="admin">Manager User</a></li>
-                                
+                               <li><a href="order">Manager Order</a></li
                                 </c:if>
-                                <c:if test="${sessionScope.acc.role==3}">
-                                 
-                                <li><a href="InfoUser.jsp">Info</a></li>
-                               <li><a href=""></a></li>
-                                </c:if>
-                                
-                            <li><a href="#!">Hello  ${sessionScope.account.username} </a></li>
+
+                               <c:if test="${sessionScope.acc!=null}"> <li><a href="InfoUser.jsp">  Profile </a></li></c:if>
+                           
                         </ul>
                     </div>
                 </nav>
@@ -262,125 +250,125 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                         <jsp:include page="Category.jsp"></jsp:include>
-                       
+
 
                         </div>
 
                         <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
                             <div class="categories-right" style="color:green" >ALL PRODUCTS</div>
-<!--                            <div class="pagination">
-                           
-                            <c:forEach begin="1" end="${endP}" var="i">
-                                <a class=" ${tag1==i?"active":""}" href="home?index=${i}">${i}</a>
-                            </c:forEach>
-                            </div>-->
- 
-            
-                  <div class="pagination">
-                    <c:forEach var="i" begin="1" end="${endPage}">
-                        <a class="  ${i == PTid ? "active":"" }" href="home?PTid=${i}" >${i}</a>    
-                        </c:forEach>
-                </div>
-                <div class="pagination">
-                    <c:forEach var="i" begin="1" end="${endPageSearch}">
-                        <a class="  ${i == PTidSearch ? "active":""}"  href="search?PTidSearch=${i}&txt=${txtS}" >${i}</a>    
-                        </c:forEach>
-                </div>
-<div class="pagination">
-                    <c:forEach var="i" begin="1" end="${endPageCate}">
-                        <a class=" ${i == PTidCate ? "active":"" }" href="category?PTidCate=${i}&cid=${cateID}" >${i}</a>    
-                        </c:forEach>
-                </div>
-           
-                       <div class="row" align="center" >
-                           <form name="f" action="" method="post">
-                           
+                            <!--                            <div class="pagination">
                                                        
-                          
-                               <div> Enter the number of items to by:
-            <input style="text-align: center" type="number" name="num" value="1"/></div>   
-                           
-    <c:forEach var="p"  items="${listP}" >
-         
-        <div class="content-right">
-               
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                 
-               
-                <div class="content-right-product">
-                    
-                          
-                    <div><img src="${p.images}" class="img-responsive" width=" 250px" height="300px" ></div>
-                    
-                    <div class="content-right-product-h4"><a href="detail?pid=${p.id}">${p.name}</a></div>
-                    
-                    <div class="content-right-product-p">${p.infor}</div>
-                    
-                    <div class="content-right-product-amount"><i class="fa fa-inr" style="color:#df001a;"></i> ${p.price}</div>
-                    
-                       
-                         <div class="cart" align="center">
-                            
-                                 
-                                  <a onclick="buy('${p.id}','${p.quantity}')" class="btn" >
-                                   Add to Cart</a>
-                             
-                              
-                         </div>
-                    
-                   
+                        <c:forEach begin="1" end="${endP}" var="i">
+                            <a class=" ${tag1==i?"active":""}" href="home?index=${i}">${i}</a>
+                        </c:forEach>
+                        </div>-->
+
+
+
+                        <div class="row" align="center" >
+                            <form name="f" action="" method="post">
+
+
+
+                                <div> Enter the number of items to by:
+                                    <input style="text-align: center" type="number" name="num" value="1"/></div>   
+
+                                <c:forEach var="p"  items="${listP}" >
+
+                                    <div class="content-right">
+
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+
+
+                                            <div class="content-right-product">
+
+
+                                                <div><img src="${p.images}" class="img-responsive" width=" 250px" height="300px" ></div>
+
+                                                <div class="content-right-product-h4"><a href="detail?pid=${p.id}">${p.name}</a></div>
+
+                                                <div class="content-right-product-p">${p.infor}</div>
+
+                                                <div class="content-right-product-amount"><i class="fa fa-inr" style="color:#df001a;"></i> ${p.price}</div>
+
+
+                                                <div class="cart" align="center">
+
+
+                                                    <a onclick="buy('${p.id}', '${p.quantity}')" class="btn" >
+                                                        Add to Cart</a>
+
+
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </c:forEach>
+                            </form>
 
                         </div>
-            </div>
-
-
-        </div>
-    </c:forEach>
-                               </form>
-
-                </div>
-                            
+                        <div class="pagination" style="margin-left: 40%">
+                            <c:forEach var="i" begin="1" end="${endPage}">
+                                <a class="  ${i == PTid ? "active":"" }" href="home?PTid=${i}" >${i}</a>    
+                            </c:forEach>
+                        </div>
+                        <div class="pagination">
+                            <c:forEach var="i" begin="1" end="${endPageSearch}">
+                                <a class="  ${i == PTidSearch ? "active":""}"  href="search?PTidSearch=${i}&txt=${txtS}" >${i}</a>    
+                            </c:forEach>
+                        </div>
+                        <div class="pagination">
+                            <c:forEach var="i" begin="1" end="${endPageCate}">
+                                <a class=" ${i == PTidCate ? "active":"" }" href="category?PTidCate=${i}&cid=${cateID}" >${i}</a>    
+                            </c:forEach>
+                        </div>
                     </div>
-                
+
                 </div>
-               
-           
-            
-                        
-                        <jsp:include page="Footer.jsp"></jsp:include>
+
+
+
+
+
+                <jsp:include page="Footer.jsp"></jsp:include>
                 <!------ End Footer ------->
             </div>
         </div>
         <script type="text/javascript" src="http://www.freetimelearning.com/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript">
-            $(function () {
-                $(".dropdown").hover(
-                        function () {
-                            $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
-                            $(this).toggleClass('open');
-                            $('b', this).toggleClass("caret caret-up");
-                        },
-                        function () {
-                            $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
-                            $(this).toggleClass('open');
-                            $('b', this).toggleClass("caret caret-up");
-                        });
-            });
+                                                        $(function () {
+                                                            $(".dropdown").hover(
+                                                                    function () {
+                                                                        $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                                                                        $(this).toggleClass('open');
+                                                                        $('b', this).toggleClass("caret caret-up");
+                                                                    },
+                                                                    function () {
+                                                                        $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                                                                        $(this).toggleClass('open');
+                                                                        $('b', this).toggleClass("caret caret-up");
+                                                                    });
+                                                        });
 
         </script>
         <script type="text/javascript">
-    function buy(id,quantity){
-        var m=document.f.num.value;
-        if(m>quantity){
-            alert("Khong du hang");
-            return ;
-        }else{
-          document.f.action="cart?id="+id;
-          document.f.submit();
-      }
-    }
-</script> 
+            function buy(id, quantity) {
+                var m = document.f.num.value;
+                if (m > quantity) {
+                    alert("Khong du hang");
+                    return;
+                } else {
+                    document.f.action = "cart?id=" + id;
+                    document.f.submit();
+                }
+            }
+        </script> 
 
         <!-- Start Content Left Categories -->
         <script type="text/javascript">
@@ -418,4 +406,3 @@
         <!-- End Content Left Categories -->
     </body>
 </html>
-
