@@ -32,7 +32,7 @@ public class DeleteProductController extends HttpServlet {
           int id = Integer.parseInt(request.getParameter("id"));
         ProductDAO p=new ProductDAO();        
         p.delete(id);
-        response.sendRedirect("manager");
+        response.sendRedirect("manageProduct");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

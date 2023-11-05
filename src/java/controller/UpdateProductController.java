@@ -85,7 +85,7 @@ public class UpdateProductController extends HttpServlet {
         ProductDAO pd= new ProductDAO();
         Product p= new Product(id_pro, id_cat, name_pro, images, quantity, price, supplier, info, sid);
         pd.update(p);
-        response.sendRedirect("manage");
+        response.sendRedirect("manageProduct");
     }
 
     /** 

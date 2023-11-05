@@ -33,7 +33,7 @@
                         <div class="card rounded-0 shadow">
                             <div class="card-body">
                                 <h3>Update Profile</h3>
-                                <form action="manageraccount" method="post">
+                                <form action="updateProfile" method="post">
                                     <div class="form-group">
                                       
                                         <label for="exampleInputEmail1">Username: </label>

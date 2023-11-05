@@ -181,13 +181,13 @@
                         <tbody>
                             <c:forEach items="${ListB}" var="o" >
                                 <tr>
-                                    <td>${o.id_user}</td>
+                                    <td>${o.id}</td>
                                     <td>${o.username}</td>
                                     <td>${o.email}</td>
                                     <td>${o.address}</td>
                                     <td>${o.phone}</td>
                                     <td>
-                                        <a href="blockAcc?ubID=${o.id_user}">Enable</a>
+                                        <a href="blockAcc?ubID=${o.id}">Enable</a>
                                     </td>
                                 </tr>
                             </c:forEach>

@@ -43,7 +43,7 @@
                     <td>${c.email}</td>
                     <td>${c.role}</td>
                     
-                    <td> <a href="admin?aid=${c.id_user}">Block</a></td>
+                    <td> <a href="admin?aid=${c.id}">Block</a></td>
                 </tr>
             </c:forEach>
            

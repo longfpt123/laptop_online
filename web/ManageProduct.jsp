@@ -70,8 +70,8 @@
                                         <label for="checkbox1"></label>
                                     </span>
                                 </td>
-                                <td>${o.id_pro}</td>
-                                <td>${o.name_pro}</td>
+                                <td>${o.id}</td>
+                                <td>${o.name}</td>
                                 <td>
                                     <img src="${o.images}">
                                 </td>
@@ -80,8 +80,8 @@
                                 <td>${o.infor}</td>
                                 <td>${o.supplier}</td>
                                 <td>
-                                    <a href="loadInfor?id=${o.id_pro}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a href="delete?id=${o.id_pro}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a href="loadInfor?id=${o.id}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="delete?id=${o.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -100,10 +100,10 @@
                                                 <li class="page-item"><a href="#" class="page-link">4</a></li>
                                                 <li class="page-item"><a href="#" class="page-link">5</a></li>-->
                         <c:forEach begin="1" end="${endP}" var="i">
-                            <li class="page-item ${tag==i?"active":""}"><a href="manager?index=${i}" class="page-link">${i}</a></li>
+                            <li class="page-item ${tag==i?"active":""}"><a href="manageProduct?index=${i}" class="page-link">${i}</a></li>
                             </c:forEach>
                             <c:if test="${tag<endP}">
-                             <li class="page-item"><a href="manager?index=${tag+1}" class="page-link">Next</a></li>
+                             <li class="page-item"><a href="manageProduct?index=${tag+1}" class="page-link">Next</a></li>
                             </c:if>
                        
                     </ul>

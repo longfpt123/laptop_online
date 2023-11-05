@@ -211,19 +211,19 @@
 
                             <c:if test="${sessionScope.acc.role==2}">
 
-                                <li><a href="manager">Manager Product</a></li>
+                                <li><a href="manageProduct">Manager Product</a></li>
                                 <li><a href="order">Manager Order</a></li>
                                 </c:if>
 
                             <c:if test="${sessionScope.acc.role==1}">
 
 
-                                <li><a href="manager">Manager Product</a></li>
-                                <li><a href="admin">Manager User</a></li>
-                               <li><a href="order">Manager Order</a></li
+                                <li><a href="manageProduct">Manage Product</a></li>
+                                <li><a href="admin">Manage User</a></li>
+                               <li><a href="order">Manage Order</a></li
                                 </c:if>
 
-                               <c:if test="${sessionScope.acc!=null}"> <li><a href="InfoUser.jsp">  Profile </a></li></c:if>
+                               <c:if test="${sessionScope.acc!=null}"> <li><a href="Profile.jsp">  Profile </a></li></c:if>
                            
                         </ul>
                     </div>
@@ -270,7 +270,7 @@
 
 
 
-                                <div> Enter the number of items to by:
+                                <div style="display: none"> Enter the number of items to by:
                                     <input style="text-align: center" type="number" name="num" value="1"/></div>   
 
                                 <c:forEach var="p"  items="${listP}" >

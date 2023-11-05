@@ -37,7 +37,7 @@
         
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="add" method="post">
+                    <form action="addProduct" method="post">
                         <div class="modal-header">						
                             <h4 style="color: green" class="modal-title">Add Product</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -73,7 +73,7 @@
                                 <label >Category</label>
                                 <select    name="id_cat" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listC}" var="o">
-                                        <option value="${o.id_cat}">${o.name_cat}</option>
+                                        <option value="${o.id}">${o.name}</option>
                                     </c:forEach>
                                    
                                 </select>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="modal-footer">
                             <!--<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">-->
-                           <a  href="manager"><button type="button" >Back</button>
+                           <a  href="manageProduct"><button type="button" >Back</button>
 
                             <input type="submit" class="btn btn-success" value="Add">
 

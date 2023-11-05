@@ -81,7 +81,7 @@ public class UpdateProfileController extends HttpServlet {
 //
 //        }
         
-        String gender = request.getParameter("gender");
+      
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
@@ -89,7 +89,7 @@ public class UpdateProfileController extends HttpServlet {
         User acc = (User) se.getAttribute("acc");
         if(!username.isEmpty()) acc.setUsername(username);
         if(!password.isEmpty()) acc.setPassword(password);      
-        if(!gender.isEmpty()) acc.setGender(gender);
+        
 //                           acc.setDob(dob);
         if(checkInputPhone(phone)) acc.setPhone(phone);
          if(!email.isEmpty()) acc.setEmail(email);
@@ -105,7 +105,7 @@ public class UpdateProfileController extends HttpServlet {
             if (err.length() == 0) {
 //                User a = new User(Integer.parseInt(id_user), username, password, dob, gender, email, phone, address, "1");
                  userDAO.updateAcc(acc);
-              response.sendRedirect("manageraccount");
+              response.sendRedirect("home");
             }
            
              

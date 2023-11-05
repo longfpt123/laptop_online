@@ -83,7 +83,7 @@ public class AddProductController extends HttpServlet {
         int sid = u.getId();
         ProductDAO pd = new ProductDAO(); 
         pd.addPro( id_cat, name, image, quantity, price, supplier, description, sid);            
-        response.sendRedirect("manage");
+        response.sendRedirect("manageProduct");
     }
 
     /** 

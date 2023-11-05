@@ -94,7 +94,7 @@ public class CheckoutController extends HttpServlet {
 //                odb.insertBuyer(0, 0, 0, Fname, Lname, phone, address);
                 session.removeAttribute("cart");
                 session.setAttribute("size", 0);
-                response.sendRedirect("home");
+                response.sendRedirect("Success.jsp");
             }else{
                 response.sendRedirect("Login.jsp");
             }

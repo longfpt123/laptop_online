@@ -181,14 +181,14 @@
                 <c:set var="t" value="${t+1}"/>               
             <tr>                
                 <td>${t}</td>
-                <td>${i.product.name_pro}</td>
+                <td>${i.product.name}</td>
                 <td>
                    <img src="${i.product.images}"  width="100" height="50">    
                 </td>
                 <td style="text-align: center">
-                    <button ><a href="process?num=-1&id=${i.product.id_pro}">-</a></button>
+                    <button ><a href="process?num=-1&id=${i.product.id}">-</a></button>
                     <input type="text" readonly  value="${i.quantity}"/>
-                    <button><a href="process?num=1&id=${i.product.id_pro}">+</a></button>
+                    <button><a href="process?num=1&id=${i.product.id}">+</a></button>
                     
                 </td>
                 
@@ -200,7 +200,7 @@
                 </td>
                 <td style="text-align: center">
                     <form action="process" method="post">
-                        <input type="hidden" name="id" value="${i.product.id_pro}"/>
+                        <input type="hidden" name="id" value="${i.product.id}"/>
                         <input type="submit" value="Remove"/>   
                     </form>    
                 </td>

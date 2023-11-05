@@ -33,7 +33,7 @@
         
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="update" method="post">
+                    <form action="updateProduct" method="post">
                         <div class="modal-header">						
                             <h4 style="color:green"  class="modal-title">Update Employee</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -42,11 +42,11 @@
                              
                             <div class="form-group">
                                 <label>ID</label>
-                                <input name="id_pro" type="text" class="form-control" value="${detail.id_pro}"  readonly required>
+                                <input name="id_pro" type="text" class="form-control" value="${detail.id}"  readonly required>
                             </div>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input name="name_pro" value="${detail.name_pro}" type="text" class="form-control" required>
+                                <input name="name_pro" value="${detail.name}" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
@@ -72,7 +72,7 @@
                                 <label >Category</label>
                                 <select     name="id_cat" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listC}" var="o">
-                                        <option      value="${o.id_cat}">${o.name_cat}</option>
+                                        <option      value="${o.id}">${o.name}</option>
                                     </c:forEach>
                                    
                                 </select>				

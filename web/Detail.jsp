@@ -84,7 +84,7 @@
 
                         <div class="row">
                             <!--<form action="search" method="post">-->
-                            <div class="col-md-5 col-sm-5 col-xs-12 form-top hidden-xs" align="center">
+                            <div class="col-md-5 col-sm-5 col-xs-12 form-top hidden-xs" style="margin-top: 50px" align="center">
                                 <form action="search" method="post">
                                     <div class="input-group">
 
@@ -102,12 +102,7 @@
                                 <div class="row hidden-xs">
                                     <div class="row">
                                         <div class="header-top pull-right">
-                                            <ul>
-                                                <li><a href=""><i class="fa fa-facebook"></i>&nbsp;</a></li>
-                                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                                <li><a href=""><i class="fa fa-google"></i></a></li>
-                                            </ul>
+                                         
                                         </div>
                                     </div>
                                 </div>
@@ -165,18 +160,8 @@
                     <div id="navbarCollapse" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li> <a   href="home">Home</a></li>
-                            <!--                            <li class="dropdown">
-                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="Product.jsp">Men Shoes &nbsp;
-                                                                <span class="caret"></span></a>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a href="#!"> Barnd Name</a></li>
-                                                                <li><a href="#!"> Barnd Name</a></li>
-                                                                <li><a href="#!"> Barnd Name</a></li>
-                                                                <li><a href="#!"> Barnd Name</a></li>
-                            target="_blank"
-                                                            </ul>
-                                                        </li>-->
-                            <li> <a   href="">Product</a></li>              
+                          
+                                      
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Women Shoes &nbsp;
                                     <span class="caret"></span></a>
@@ -217,22 +202,25 @@
                                     <li><a href="#!"> Barnd Name</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#!"></a></li>
-                            <li><a href="#!"></a></li>
-                            <li><a href="#!"></a></li>
-                            <li><a href="#!"></a></li>
-                            <li><a href="#!"></a></li>
+                         
 
-                            <c:if test="${sessionScope.acc.role==2}">
-                                <li><a href="manager">Manager Product</a></li>
+                             <c:if test="${sessionScope.acc.role==2}">
+
+                                <li><a href="manageProduct">Manager Product</a></li>
+                                <li><a href="order">Manager Order</a></li>
                                 </c:if>
-                                <c:if test="${sessionScope.acc.role==1}">
 
-                                <li><a href="ManagerUser.jsp">Manager User</a></li>
+                            <c:if test="${sessionScope.acc.role==1}">
 
-                            </c:if>
 
-                            <li><a href="#!">Hello  ${sessionScope.account.username} </a></li>
+                                <li><a href="manageProduct">Manage Product</a></li>
+                                <li><a href="admin">Manage User</a></li>
+                               <li><a href="order">Manage Order</a></li
+                                </c:if>
+
+                               <c:if test="${sessionScope.acc!=null}"> <li><a href="Profile.jsp">  Profile </a></li></c:if>
+
+                         
                         </ul>
                     </div>
                 </nav>
@@ -258,28 +246,13 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
 
-                       <div id='content_left_menu'>
-                            <div class="categories" style="color:green">ALL CATEGORIES </div>
-                            <ul>
-
-                               
-
-                                    <c:forEach items="${listC}" var='o'>
-                                    <li  ><a    href="category?id_cat=${o.id_cat}"><span>${o.name_cat}</span></a></li>
-                                            </c:forEach>
-
-                                </li>
-
-                            </ul>
-                             
-                                           
-                          
-                        </div>
+                       <jsp:include page="Category.jsp"></jsp:include>
 
                         </div>
 
                         <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
                             <div class="categories-right" style="color:green" >Detail</div>
+                             
                             <div class="row" align="center" >
 
 
@@ -290,20 +263,21 @@
                                         <div class="row">
                                            
                                             <div class="col-md-5" style="margin-top: 10px">
-                                                <div> Enter the number of items to by:
-            <input style="text-align: center" type="number" name="num" value="1"/></div> 
-                                                <img src="${dt.images}"  width=" 400px" height="400px" >
+                                                
+                                                <img src="${dt.images}"  width=" 370px" height="400px" >
                                              <div class="cart" align="center">
                             
-                                 
-                                  <a onclick="buy('${dt.id_pro}','${dt.quantity}')" class="btn" >
+                                                 <div  > Enter the number of items :
+            <input style="text-align: center" type="number" name="num" value="1"/></div>
+            <br>
+                                  <a onclick="buy('${dt.id}','${dt.quantity}')" class="btn" >
                                    Add to Cart</a>
                              
                               
                          </div>
                                             </div>
                                             <div class="col-md-7">
-                                                <h1 style="color:blueviolet">${dt.name_pro}</h1>
+                                                <h1 style="color:blueviolet">${dt.name}</h1>
                                                 <p>${dt.infor}</p>
                                                 <div class="content-right-product-amount"><i class="fa fa-inr" style="color:#df001a;"></i>Price: ${dt.price} $</div>
                                                 <p>Quantity: ${dt.quantity}</p>

@@ -107,7 +107,23 @@ public class CartProcessController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session =request.getSession(true);
+        CartItem cart=null;
+        Object o=session.getAttribute("cart");
+        //co roi
+        if(o!=null){
+            cart=(CartItem)o;
+        }else{
+            cart=new CartItem();
+        }
+        int id=Integer.parseInt(request.getParameter("id"));
+        cart.removeItem(id);
+        
+        List<Item> list=cart.getItems();
+        
+        session.setAttribute("cart", cart);
+        session.setAttribute("size", list.size());
+        request.getRequestDispatcher("Cart.jsp").forward(request, response);  
     }
 
     /** 

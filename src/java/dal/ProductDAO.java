@@ -373,7 +373,7 @@ public class ProductDAO extends DBContext {
         List<Product> list = new ArrayList<>();
         String query = "with x as (select ROW_NUMBER() over (order by id_pro desc) as r,\n"
                 + "id_pro,name_pro,images,price,infor,id_cat,quantity,supplier,sell_ID from product ) \n"
-                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID from x where r between ?*6-5 and ?*6";
+                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID from x where r between ?*6-5 and ?*6 and x.quantity>0";
         try {
            
            PreparedStatement ps = connection.prepareStatement(query);
@@ -400,7 +400,7 @@ public class ProductDAO extends DBContext {
         List<Product> list = new ArrayList<>();
         String query = "with x as (select ROW_NUMBER() over (order by id_pro desc) as r,\n"
                 + "id_pro,name_pro,images,price,infor,id_cat,quantity,supplier,sell_ID from product where [name_pro] like ? ) \n"
-                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID from x where r between ?*6-5 and ?*6";
+                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID from x where r between ?*6-5 and ?*6 and x.quantity>0 ";
         try {
             //mo ket noi voi sql
             PreparedStatement ps = connection.prepareStatement(query);
@@ -428,7 +428,7 @@ public class ProductDAO extends DBContext {
         List<Product> list = new ArrayList<>();
         String query = "with x as (select ROW_NUMBER() over (order by id_pro desc) as r,\n"
                 + "id_pro,name_pro,images,price,infor,id_cat,quantity,supplier,sell_ID from product where id_cat = ? ) \n"
-                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID from x where r between ?*6-5 and ?*6";
+                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID from x where r between ?*6-5 and ?*6 and x.quantity>0";
         try {
             //mo ket noi voi sql
             PreparedStatement ps = connection.prepareStatement(query);
