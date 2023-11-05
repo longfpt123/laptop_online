@@ -37,6 +37,18 @@ public class User {
         this.role = role;
         this.block=block;
     }
+    
+       public User( String username, String password, java.sql.Date dob, String gender, String email, String phone, String address, String role,String block) {
+        this.username = username;
+        this.password = password;
+        this.dob = dob;
+        this.gender = gender;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.role = role;
+        this.block=block;
+    }
 
     public int getId() {
         return id;

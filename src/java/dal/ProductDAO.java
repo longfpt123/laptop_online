@@ -40,7 +40,7 @@ public class ProductDAO extends DBContext {
 
     //get list of product from category id
     public List<Product> getListProByCat(String id) {
-        String sql = "select * from product where id_cat='" + id + "'";
+        String sql = "select * from product where id_cat='" + id + "' ";
         List<Product> list = new ArrayList<>();
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -54,7 +54,8 @@ public class ProductDAO extends DBContext {
                         rs.getDouble("price"),
                         rs.getString("supplier"),
                         rs.getString("infor"),
-                        rs.getInt("sell_ID"));
+                        rs.getInt("sell_ID"),
+                        rs.getInt("status"));
                 list.add(p);
             }
         } catch (SQLException e) {
@@ -65,8 +66,8 @@ public class ProductDAO extends DBContext {
 
     //get newest product
     public Product getLast() {
-        String sql = "select top 1 *from product\n"
-                + "order by id_pro desc";
+        String sql = "select top 1 *from product where status = 1\n"
+                + "order by id_pro desc ";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -80,7 +81,9 @@ public class ProductDAO extends DBContext {
                         rs.getDouble("price"),
                         rs.getString("supplier"),
                         rs.getString("infor"),
-                        rs.getInt("sell_ID"));
+                        rs.getInt("sell_ID"),
+                         rs.getInt("status")
+                );
                 return p;
             }
 
@@ -93,7 +96,7 @@ public class ProductDAO extends DBContext {
     //get product byid
 
     public Product getProductById(int id) {
-        String sql = "select * from product where id_pro=?";
+        String sql = "select * from product where id_pro=? and status =1";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -108,7 +111,8 @@ public class ProductDAO extends DBContext {
                         rs.getDouble("price"),
                         rs.getString("supplier"),
                         rs.getString("infor"),
-                        rs.getInt("sell_ID"));
+                      rs.getInt("sell_ID"),
+                        rs.getInt("status"));
                 return p;
             }
 
@@ -120,7 +124,7 @@ public class ProductDAO extends DBContext {
     }
 
     public List<Product> searchByName(String txtSearch) {
-        String sql = "select*from product where name_pro like ? ";
+        String sql = "select*from product where name_pro like ? and status =1 ";
         List<Product> list = new ArrayList<>();
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -135,7 +139,8 @@ public class ProductDAO extends DBContext {
                         rs.getDouble("price"),
                         rs.getString("supplier"),
                         rs.getString("infor"),
-                        rs.getInt("sell_ID"));
+                       rs.getInt("sell_ID"),
+                        rs.getInt("status"));
                 list.add(p);
             }
         } catch (SQLException e) {
@@ -162,7 +167,8 @@ public class ProductDAO extends DBContext {
                         rs.getDouble("price"),
                         rs.getString("supplier"),
                         rs.getString("infor"),
-                        rs.getInt("sell_ID"));
+                      rs.getInt("sell_ID"),
+                        rs.getInt("status"));
                 list.add(p);
             }
         } catch (SQLException e) {
@@ -172,7 +178,8 @@ public class ProductDAO extends DBContext {
     }
 
     public int delete(int id) {
-        String sql = "delete product where id_pro=?";
+        //set status 1 sell --> disable
+        String sql = "update product set status=0 where id_pro=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
@@ -203,7 +210,7 @@ public class ProductDAO extends DBContext {
 
     //get page product
     public List<Product> pagingProduct(int index) {
-        String sql = "select * from product order by id_pro OFFSET ? ROWS FETCH NEXT 5 ROWS ONLY";
+        String sql = "select * from product where status =1 order by id_pro OFFSET ? ROWS FETCH NEXT 5 ROWS ONLY ";
         List<Product> list = new ArrayList<>();
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -218,7 +225,8 @@ public class ProductDAO extends DBContext {
                         rs.getDouble("price"),
                         rs.getString("supplier"),
                         rs.getString("infor"),
-                        rs.getInt("sell_ID"));
+                       rs.getInt("sell_ID"),
+                        rs.getInt("status"));
                 list.add(p);
             }
 
@@ -279,7 +287,7 @@ public class ProductDAO extends DBContext {
     //add new product
      public void addPro(
           int id_cat,String name_pro,String images,int quantity,double price,String supplier,String infor,int sell_id) {
-        String sql = "INSERT [dbo].[product] ( [id_cat], [name_pro], [images], [quantity], [price], [supplier], [infor],[sell_ID]) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT [dbo].[product] ( [id_cat], [name_pro], [images], [quantity], [price], [supplier], [infor],[sell_ID],status) VALUES(?,?,?,?,?,?,?,?,1)";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -372,8 +380,8 @@ public class ProductDAO extends DBContext {
     public List<Product> getProductIndexByID(String index) {
         List<Product> list = new ArrayList<>();
         String query = "with x as (select ROW_NUMBER() over (order by id_pro desc) as r,\n"
-                + "id_pro,name_pro,images,price,infor,id_cat,quantity,supplier,sell_ID from product ) \n"
-                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID from x where r between ?*6-5 and ?*6 and x.quantity>0";
+                + "id_pro,name_pro,images,price,infor,id_cat,quantity,supplier,sell_ID,status from product ) \n"
+                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID,x.status from x where r between ?*6-5 and ?*6 and x.quantity>0 and x.status =1";
         try {
            
            PreparedStatement ps = connection.prepareStatement(query);
@@ -389,7 +397,8 @@ public class ProductDAO extends DBContext {
                         rs.getDouble("price"),
                         rs.getString("supplier"),
                         rs.getString("infor"),
-                        rs.getInt("sell_ID"));
+                    rs.getInt("sell_ID"),
+                        rs.getInt("status"));
                 list.add(p);
             }
         } catch (Exception e) {
@@ -399,8 +408,8 @@ public class ProductDAO extends DBContext {
     public List<Product> getProductIndexBySearchName(String name, String index) {
         List<Product> list = new ArrayList<>();
         String query = "with x as (select ROW_NUMBER() over (order by id_pro desc) as r,\n"
-                + "id_pro,name_pro,images,price,infor,id_cat,quantity,supplier,sell_ID from product where [name_pro] like ? ) \n"
-                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID from x where r between ?*6-5 and ?*6 and x.quantity>0 ";
+                + "id_pro,name_pro,images,price,infor,id_cat,quantity,supplier,sell_ID,status from product where [name_pro] like ? ) \n"
+                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID,x.status from x where r between ?*6-5 and ?*6 and x.quantity>0 and x.status =1";
         try {
             //mo ket noi voi sql
             PreparedStatement ps = connection.prepareStatement(query);
@@ -417,7 +426,8 @@ public class ProductDAO extends DBContext {
                         rs.getDouble("price"),
                         rs.getString("supplier"),
                         rs.getString("infor"),
-                        rs.getInt("sell_ID"));
+                      rs.getInt("sell_ID"),
+                        rs.getInt("status"));
                 list.add(p);
             }
         } catch (SQLException e) {
@@ -427,8 +437,8 @@ public class ProductDAO extends DBContext {
     public List<Product> getProductByCate(String cid, String index) {
         List<Product> list = new ArrayList<>();
         String query = "with x as (select ROW_NUMBER() over (order by id_pro desc) as r,\n"
-                + "id_pro,name_pro,images,price,infor,id_cat,quantity,supplier,sell_ID from product where id_cat = ? ) \n"
-                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID from x where r between ?*6-5 and ?*6 and x.quantity>0";
+                + "id_pro,name_pro,images,price,infor,id_cat,quantity,supplier,sell_ID,status from product where id_cat = ? ) \n"
+                + "select x.id_pro, x.name_pro, x.images, x.price, x.infor,x.id_cat,x.quantity,x.supplier,x.sell_ID,x.status from x where r between ?*6-5 and ?*6 and x.quantity>0 and x.status =1";
         try {
             //mo ket noi voi sql
             PreparedStatement ps = connection.prepareStatement(query);
@@ -445,7 +455,8 @@ public class ProductDAO extends DBContext {
                         rs.getDouble("price"),
                         rs.getString("supplier"),
                         rs.getString("infor"),
-                        rs.getInt("sell_ID"));
+                       rs.getInt("sell_ID"),
+                        rs.getInt("status"));
                 list.add(p);
             }
         } catch (SQLException e) {

@@ -115,6 +115,11 @@
                                                         <a href="logout">
                                                             Log Out
                                                         </a></li>
+                                                        <li style="border-right:none;">
+
+                                                        <a href="Profile.jsp">
+                                                            Profile
+                                                        </a></li>
                                                     </c:if>
 
 
@@ -155,58 +160,11 @@
                         <ul class="nav navbar-nav">
                             <li> <a   href="home">Home</a></li>
                             <li> <a   href="">Product</a></li>    
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="">Technical Help &nbsp;
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    target="_blank"
-                                </ul>
-                            </li>
+                            <c:forEach items="${listC}" var="o">
+                                <li class="  ${tag == o.id ? "active" : ""}"><a href="category?cid=${o.id}">${o.name}</a></li>
+                                </c:forEach>
 
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Document.... &nbsp;
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <!--                                    <li><a href="#!"> Barnd Name</a></li>
-                                                                        <li><a href="#!"> Barnd Name</a></li>
-                                                                        <li><a href="#!"> Barnd Name</a></li>
-                                                                        <li><a href="#!"> Barnd Name</a></li>-->
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Other &nbsp;
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Program &nbsp;
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"> My App &nbsp;
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                </ul>
-                            </li>
+                           
 
 
                             <c:if test="${sessionScope.acc.role==2}">
@@ -223,7 +181,7 @@
                                <li><a href="order">Manage Order</a></li
                                 </c:if>
 
-                               <c:if test="${sessionScope.acc!=null}"> <li><a href="Profile.jsp">  Profile </a></li></c:if>
+                             
                            
                         </ul>
                     </div>

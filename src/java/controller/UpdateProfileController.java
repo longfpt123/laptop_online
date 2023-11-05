@@ -105,11 +105,16 @@ public class UpdateProfileController extends HttpServlet {
             if (err.length() == 0) {
 //                User a = new User(Integer.parseInt(id_user), username, password, dob, gender, email, phone, address, "1");
                  userDAO.updateAcc(acc);
-              response.sendRedirect("home");
+                 request.setAttribute("mess", "Update Success");
+              request.getRequestDispatcher("Profile.jsp").forward(request, response);
+            }else{
+                request.setAttribute("err", err);
+              request.getRequestDispatcher("Profile.jsp").forward(request, response);
             }
            
              
         } catch (Exception e) {
+            
                System.out.println(e);
         }
     }

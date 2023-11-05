@@ -23,13 +23,13 @@
         <div class="container-fluid text-center"    >
         <table class="table table-bordered table-hover">
             <a href="blockAcc">Enable User</a>
-            <tr class="table-inverse">
-                <th>Account</th>
-                <th>Password</th>               
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Email</th>
-                <th>Controller</th>
+            <tr class="table-inverse" >
+                <th style="text-align: center">Account</th>
+                <th style="text-align: center">Password</th>               
+                <th style="text-align: center">Phone</th>
+                <th style="text-align: center">Address</th>
+                <th style="text-align: center">Email</th>
+             
                 
                 <th>Action</th>
             </tr>
@@ -41,7 +41,7 @@
                     <td>${c.phone}</td>
                     <td>${c.address}</td>
                     <td>${c.email}</td>
-                    <td>${c.role}</td>
+                  
                     
                     <td> <a href="admin?aid=${c.id}">Block</a></td>
                 </tr>

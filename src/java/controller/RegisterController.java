@@ -108,9 +108,8 @@ public class RegisterController extends HttpServlet {
         try {
             if (err.length() == 0) {
                 Random generator = new Random();
-                HttpSession session = request.getSession();
-                int id = generator.nextInt(1000);
-                userDAO.signup(new User(id, username, password, dob, gender, email, phone, address,"3","0"));
+                HttpSession session = request.getSession();          
+                userDAO.signup(new User( username, password, dob, gender, email, phone, address,"3","0"));
                 userDAO.login(username, password);
                 Cookie loginCookie = new Cookie("username", username);
                 //setting cookie to expiry in 30 mins

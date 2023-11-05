@@ -72,19 +72,19 @@ public class UserDAO extends DBContext {
         return false;
     }
 
-    public void signup(User user) {
-        String sql = "insert into [user] values(?,?,?,?,?,?,?,?,?,0)";
+   public void signup(User user) {
+        String sql = "insert into [user] values(?,?,?,?,?,?,?,?,0)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, user.getId());
-            ps.setString(2, user.getUsername());
-            ps.setString(3, user.getPassword());
-            ps.setDate(4, user.getDob());
-            ps.setString(5, user.getGender());
-            ps.setString(6, user.getEmail());
-            ps.setString(7, user.getPhone());
-            ps.setString(8, user.getAddress());
-            ps.setString(9, user.getRole());
+       
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setDate(3, user.getDob());
+            ps.setString(4, user.getGender());
+            ps.setString(5, user.getEmail());
+            ps.setString(6, user.getPhone());
+            ps.setString(7, user.getAddress());
+            ps.setString(8, user.getRole());
             ps.executeUpdate();
 
         } catch (SQLException e) {

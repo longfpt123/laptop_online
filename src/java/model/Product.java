@@ -15,10 +15,24 @@ public class Product {
     private String supplier;
     private String infor;
     private int sellID;
+    private int status;
     public Product() {
     }
 
-    public Product(int id, int idCat, String name, String images, int quantity, Double price, String supplier, String infor, int sellID) {
+    public Product(int id, int idCat, String name, String images, int quantity, Double price, String supplier, String infor, int sellID, int status) {
+        this.id = id;
+        this.idCat = idCat;
+        this.name = name;
+        this.images = images;
+        this.quantity = quantity;
+        this.price = price;
+        this.supplier = supplier;
+        this.infor = infor;
+        this.sellID = sellID;
+        this.status = status;
+    }
+    
+     public Product(int id, int idCat, String name, String images, int quantity, Double price, String supplier, String infor, int sellID) {
         this.id = id;
         this.idCat = idCat;
         this.name = name;
@@ -29,6 +43,18 @@ public class Product {
         this.infor = infor;
         this.sellID = sellID;
     }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    
+
+   
 
     public int getId() {
         return id;

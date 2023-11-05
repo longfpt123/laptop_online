@@ -122,6 +122,11 @@
                                                         <a href="logout">
                                                             Log Out
                                                         </a></li>
+                                                        <li style="border-right:none;">
+
+                                                        <a href="Profile.jsp">
+                                                            Profile
+                                                        </a></li>
                                                     </c:if>
 
 
@@ -133,9 +138,10 @@
                                     <div class="col-md-5 col-sm-5 col-xs-12">
                                         <div class="header-right-bottom">
                                             <i class="fa fa-cart-plus cart_size"><a href="Cart.jsp"> 
-                Bag(${size})
-               
-            </a></i> &nbsp; 
+                                                    Bag(${size})
+
+                                                </a></i> &nbsp; 
+                                            <!--<i class="fa fa-inr inr_size"></i> <span class="amount">1569 /-</span>-->
                                         </div>
                                     </div>
                                 </div>
@@ -160,51 +166,15 @@
                     <div id="navbarCollapse" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li> <a   href="home">Home</a></li>
-                          
-                                      
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Women Shoes &nbsp;
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Kids Shoes &nbsp;
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Formal Shoes &nbsp;
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Top Brands &nbsp;
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                    <li><a href="#!"> Barnd Name</a></li>
-                                </ul>
-                            </li>
-                         
+                            <li> <a   href="">Product</a></li>    
+                            <c:forEach items="${listC}" var="o">
+                                <li class="  ${tag == o.id ? "active" : ""}"><a href="category?cid=${o.id}">${o.name}</a></li>
+                                </c:forEach>
 
-                             <c:if test="${sessionScope.acc.role==2}">
+                           
+
+
+                            <c:if test="${sessionScope.acc.role==2}">
 
                                 <li><a href="manageProduct">Manager Product</a></li>
                                 <li><a href="order">Manager Order</a></li>
@@ -217,8 +187,6 @@
                                 <li><a href="admin">Manage User</a></li>
                                <li><a href="order">Manage Order</a></li
                                 </c:if>
-
-                               <c:if test="${sessionScope.acc!=null}"> <li><a href="Profile.jsp">  Profile </a></li></c:if>
 
                          
                         </ul>

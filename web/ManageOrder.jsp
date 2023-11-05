@@ -109,10 +109,10 @@
                                                 <li class="page-item"><a href="#" class="page-link">4</a></li>
                                                 <li class="page-item"><a href="#" class="page-link">5</a></li>-->
                         <c:forEach begin="1" end="${endP}" var="i">
-                            <li class="page-item ${tag==i?"active":""}"><a href="manager?index=${i}" class="page-link">${i}</a></li>
+                            <li class="page-item ${tag==i?"active":""}"><a href="order?index=${i}" class="page-link">${i}</a></li>
                             </c:forEach>
                             <c:if test="${tag<endP}">
-                             <li class="page-item"><a href="manager?index=${tag+1}" class="page-link">Next</a></li>
+                             <li class="page-item"><a href="order?index=${tag+1}" class="page-link">Next</a></li>
                             </c:if>
                        
                     </ul>

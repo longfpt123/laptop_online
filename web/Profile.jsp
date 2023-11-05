@@ -73,8 +73,8 @@
                                     </div>
 
                                    
-<!--                                    <h5 style="color: red">  <%=err%></h5>
-                                     <h5 style="color: blue"> ${mess}</h5>-->
+                                    <h5 style="color: red">  <%=err%></h5><!--
+-->                                     <h5 style="color: blue"> ${mess}</h5>
                                     <button type="submit" class="btn btn-outline-danger">Submit</button>
                                     <a  href="home"><button type="button" class="btn btn-primary">Back</button>
                                 </form>
