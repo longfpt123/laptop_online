@@ -1,7 +1,7 @@
 <%-- 
     Document   : Success
     Created on : Nov 5, 2023, 3:30:50 PM
-    Author     : ducnv
+    Author     : asus
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -137,7 +137,7 @@ body {
 } 
     </style>
     <body>
-       <div class="background"></div>
+      
 <div class="container">
   <div class="row">
     <div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
@@ -156,12 +156,10 @@ body {
   <!--/.row-->
   
    
-    </div>
-    <!--/.success-->
-  </div>
-  <!--/.row-->
 </div>
 <!--/.container-->
+
+
     </body>
     
 </html>
