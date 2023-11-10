@@ -91,7 +91,7 @@
                     <div class="hint-text">Showing <b>3</b> out of <b>4</b> entries</div>
                     <ul class="pagination">
                         <c:if test="${tag>1}">
-                             <li class="page-item "><a href="manager?index=${tag-1}">Previous</a></li>
+                             <li class="page-item "><a href="manageProduct?index=${tag-1}">Previous</a></li>
                         </c:if>
                        
                         <!--                        <li class="page-item"><a href="#" class="page-link">1</a></li>

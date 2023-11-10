@@ -62,7 +62,7 @@
                         
                     <input ${(cookie.rem.value eq 'ON')?"checked":""} 
                 type="checkbox" name="rem" value="ON"  style="font-size: 20px"  /> Remember me
-                      <p class="text-danger">${mess} </p>  
+                      <!--<p class="text-danger">${mess} </p>-->  
                    
                     <% String mess = "";
                          if (request.getAttribute("mess") != null) {
